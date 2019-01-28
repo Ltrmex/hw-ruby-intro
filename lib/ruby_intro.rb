@@ -28,20 +28,54 @@ end
 
 # Part 2 - Strings and Regular Expressions
 
+# Method which concatenates "Hello" to passed in string
+# Code Reference: https://ruby-doc.com/core-2.4.2/Array.html#method-i-concat
 def hello(name)
-  # YOUR CODE HERE
+  "Hello, ".concat(name)
 end
 
+# Method that determines if passed in string starts with a consonant
+# Code Reference: https://ruby-doc.org/core-2.4.2/Regexp.html
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  s =~ /\A(?=[^aeiou])(?=[a-z])/i
 end
 
+# Method which determines if passed in string represents binary number that is a multiple of 4
+# Code Reference: https://ruby-doc.org/core-2.4.2/Regexp.html
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  return true if s == "0" 
+  /^[10]*00$/.match(s) != nil
+  
 end
 
-# Part 3
+# Part 3 - Object Oriented Basics
 
+# Code Reference: https://www.tutorialspoint.com/ruby/ruby_classes.htm
 class BookInStock
-# YOUR CODE HERE
+  @@isbn = 0
+  @@price = 0.00
+  
+  def initialize(isbn, price)
+      raise ArgumentError if isbn.empty? || price <= 0 
+      @isbn = isbn
+      @price = price
+  end
+  
+  def isbn #getter method
+    @isbn
+  end
+  def isbn=(isbn) #setter method
+    @isbn = isbn
+  end
+  
+  def price #getter method
+    @price
+  end
+  def price=(price) #setter method
+    @price = price
+  end
+  
+  def price_as_string
+    "$%.2f" % @price
+  end
 end
